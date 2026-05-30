@@ -2,10 +2,10 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from .models import User
 
 
 def login_view(request):
-    # If already logged in, redirect to correct dashboard
     if request.user.is_authenticated:
         return redirect_by_role(request.user)
 
@@ -13,18 +13,16 @@ def login_view(request):
         identifier = request.POST.get('identifier', '').strip()
         password   = request.POST.get('password', '')
 
-        # Try username first, then email, then matricule
-        from .models import User
         user = None
 
-        # By username or email
+        # Try by email
         try:
             user_obj = User.objects.get(email=identifier)
             user = authenticate(request, username=user_obj.username, password=password)
         except User.DoesNotExist:
             pass
 
-        # By matricule (students)
+        # Try by matricule
         if user is None:
             try:
                 user_obj = User.objects.get(matricule=identifier)
@@ -32,7 +30,7 @@ def login_view(request):
             except User.DoesNotExist:
                 pass
 
-        # By username directly
+        # Try by username directly
         if user is None:
             user = authenticate(request, username=identifier, password=password)
 
