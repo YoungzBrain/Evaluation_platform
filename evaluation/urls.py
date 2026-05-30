@@ -6,5 +6,6 @@ urlpatterns = [
     path('django-admin/', admin.site.urls),
     path('',              include('accounts.urls')),
     path('',              lambda request: redirect('login')),
-    path('',              include('courses.urls')),      # ← AJOUTER
+    path('',              include('courses.urls')), 
+    path('',              include('questions.urls')),
 ]
