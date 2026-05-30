@@ -52,8 +52,12 @@
         <a href="{% url 'admin_dashboard' %}" class="nav-link active">Dashboard</a>
         <a href="{% url 'teachers_list' %}" class="nav-link">Teachers</a>
         <a href="{% url 'students_list' %}" class="nav-link">Students</a>
+        <a href="{% url 'courses_list' %}" class="nav-link">Courses</a>
         <a href="{% url 'logout' %}" class="btn-logout">Logout</a>
     </div>
+
+
+    
 </div>
 
 <div class="main">
@@ -91,6 +95,14 @@
                 <div class="label">Evaluations</div>
             </a>
         </div>
+        <div class="col-md-4">
+            <a href="{% url 'courses_list' %}" class="stat-card">
+                <div class="icon">📚</div>
+                <div class="number">{{ total_courses }}</div>
+                <div class="label">Courses</div>
+            </a>
+        </div>
+    </div>
     </div>
 
 </div>

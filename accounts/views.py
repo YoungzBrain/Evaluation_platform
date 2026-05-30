@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+
+from courses.models import Course
 from .models import User
 
 
@@ -66,10 +68,14 @@ def admin_dashboard(request):
 
     total_teachers = User.objects.filter(role='teacher').count()
     total_students = User.objects.filter(role='student').count()
+        
+    total_courses = Course.objects.count()
+    # et passer total_courses au contexte
 
     return render(request, 'accounts/admin_dashboard.html', {
         'total_teachers': total_teachers,
         'total_students': total_students,
+        'total_courses': total_courses,
     })
 
 @login_required
