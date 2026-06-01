@@ -9,6 +9,5 @@ urlpatterns = [
     path('',              lambda request: redirect('login')),
     path('',              include('courses.urls')), 
     path('',              include('questions.urls')),
-        path('',              include('accounts.urls')),
     path('',              include('evaluations.urls')),
 ]

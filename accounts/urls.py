@@ -12,7 +12,7 @@ urlpatterns = [
     path('student/dashboard/',  views.student_dashboard, name='student_dashboard'),
 
     # ── Teachers ──────────────────────────────────────────────────────────────
-    path('admin/teachers/',                views.teachers_list,  name='teachers_list'),
+    path('admin/teachers/',                views.teachers_list,  name='teachers_list_admin'),
     path('admin/teachers/create/',         views.teacher_create, name='teacher_create'),
     path('admin/teachers/<int:pk>/edit/',  views.teacher_edit,   name='teacher_edit'),
     path('admin/teachers/<int:pk>/toggle/',views.teacher_toggle, name='teacher_toggle'),

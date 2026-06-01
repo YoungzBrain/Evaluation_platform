@@ -65,3 +65,16 @@ class Answer(models.Model):
 
     def __str__(self):
         return f"Answer to {self.question} in {self.evaluation}"
+    
+    class EvaluationPdf(models.Model):
+        """Tracks generated PDF files for evaluations."""
+    evaluation   = models.OneToOneField(
+        Evaluation,
+        on_delete=models.CASCADE,
+        related_name='pdf'
+    )
+    file_path    = models.CharField(max_length=255)
+    generated_at = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"PDF — eval #{self.evaluation_id}"
